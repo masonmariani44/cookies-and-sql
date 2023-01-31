@@ -1,0 +1,43 @@
+#! /usr/bin/python3
+
+import os
+import sys
+import cgi
+import pymysql
+import requests
+
+print("Status: 200 OK")
+print("Content-Type: text/html")
+print()
+
+s = requests.Session()
+if s.cookies.get_dict():
+	print("<html><body>")
+	print()
+
+	print("<h1>Start server</h1>")
+	print("<a href=\"/cgi-bin/start_server\"; Click here</a>")
+	
+	print("</html></body>")
+	print()
+
+else:
+	#create session id
+	ID_as_int = random.randint(0, 16**64)
+	ID_as_str = "%064x" % ID_as_int
+
+	set = cookies.SimpleCookie()
+	set['ID_as_str'] = ID_as_str
+
+	print("<html><body>")
+	print()
+
+	#login form
+	print("<form action=\"/cgi-bin/set_to_db.py\" method=post>")
+	print("<input type=hidden name=ID_as_str value="+ID_as_str+">")
+	print("username: <input type=text name=username>")
+	print("<input type=submit>")
+
+	print("</html></body>")
+	print()
+
